@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="th.project.samplecode.mapper.PersonMapper">
+
+	<insert id="insertPerson" parameterType="Person">
+	INSERT INTO PERSON (ID, NAME, ADDRESS, GENDER, PHONENUMBER) VALUES (#{id}, #{name}, #{address}, #{gender}, #{phonenumber});
+	</insert>
+	
+	<update id="updatePerson" parameterType="Person">
+	UPDATE PERSON SET NAME = #{name}, ADDRESS= #{address}, GENDER =#{gender}, PHONENUMBER = #{phonenumber} WHERE ID = #{id};
+	</update>
+	
+	<delete id="deletePersonById" parameterType="int">
+		DELETE FROM PERSON WHERE ID = #{id};
+	</delete>
+	
+	<select id="selectAllPerson" resultMap="result">
+		SELECT * FROM PERSON;
+	</select>
+	
+	<select id="selectPersonById" parameterType="int" resultType="Person">
+		SELECT * FROM PERSON WHERE ID = #{id};
+	</select>
+	
+	<resultMap id = "result" type = "Person">
+	 <result property = "id" column="ID"/>
+	 <result property = "name" column="NAME"/>
+	 <result property = "address" column="ADDRESS"/>
+	 <result property = "gender" column="GENDER"/>
+	 <result property = "phonenumber" column="PHONENUMBER"/>
+	</resultMap>
+	 
+</mapper>
